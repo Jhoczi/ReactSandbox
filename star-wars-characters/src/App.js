@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import Characters from './components/Characters'
 import AddCharacter from './components/AddCharacter'
 import About from './components/About'
-import Filters from "./components/Filters";
 
 const App = () => {
   const [showAddCharacter, setShowAddCharacter] = useState(false)
@@ -13,15 +12,6 @@ const App = () => {
 
   const [height,setHeight] = useState('');
   const [mass, setMass] = useState('');
-
-  const setHeightFilter = (value) => {
-    setHeight(value);
-    filterCharacters(value,null);
-  };
-  const setMassFilter = (value) => {
-    setMass(value);
-    filterCharacters(null,value);
-  };
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -78,23 +68,18 @@ const App = () => {
         : alert('Error Deleting This Character')
   }
 
+  const setHeightFilter = (value) => {
+    setHeight(value);
+    filterCharacters(value,null);
+  };
+  const setMassFilter = (value) => {
+    setMass(value);
+    filterCharacters(null,value);
+  };
   const filterCharacters = (height,mass) => {
-    if (height && mass === undefined)
-    {
-      //height = parseInt(height);
-      return characters.filter((character)=>{
-        return height >= character.height;
-      });
-    }
-    else if (mass && height === undefined)
-    {
-      //mass = parseInt(mass);
-      return characters.filter((character)=>{
-        return mass >= character.mass;
-      });
-    }
-
-    return characters;
+    return characters.filter((character)=> {
+      return (!height || character.height >= height) && (!mass || character.mass >= mass);
+    });
   };
 
   return (
@@ -134,7 +119,6 @@ const App = () => {
                     </form>}
 
                     {showAddCharacter && <AddCharacter onAdd={addCharacter} />}
-                    {console.log(characters)}
                     {characters.length > 0 ? (
                         <Characters
                             characters={filterCharacters(height,mass)}
