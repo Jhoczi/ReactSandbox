@@ -39,6 +39,14 @@
       "eye_color": "brown",
       "gender": "male",
       "id": 6
+    },
+    {
+      "name": "Grievous",
+      "height": "216",
+      "mass": "159",
+      "eye_color": "yellow",
+      "gender": "male",
+      "id": 7
     }
   ]
 }

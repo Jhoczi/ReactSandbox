@@ -94,7 +94,7 @@ const App = () => {
                 path='/'
                 element={
                   <>
-
+                    {showAddCharacter && <AddCharacter onAdd={addCharacter} />}
                     {<form className='filter-form'>
                       <div className='form-control'>
                         <label> Height ></label>
@@ -118,7 +118,6 @@ const App = () => {
                       </div>
                     </form>}
 
-                    {showAddCharacter && <AddCharacter onAdd={addCharacter} />}
                     {characters.length > 0 ? (
                         <Characters
                             characters={filterCharacters(height,mass)}
