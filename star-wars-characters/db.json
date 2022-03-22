@@ -47,6 +47,14 @@
       "eye_color": "yellow",
       "gender": "male",
       "id": 7
+    },
+    {
+      "name": "Picia Piekarz",
+      "heightValue": 230,
+      "massValue": 120,
+      "eye_color": "orange",
+      "gender": "male",
+      "id": 8
     }
   ]
 }

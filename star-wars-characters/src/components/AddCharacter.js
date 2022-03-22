@@ -15,7 +15,10 @@ const AddCharacter = ({ onAdd }) => {
       return
     }
 
-    onAdd({ name, height, mass, eye_color , gender});
+    const heightValue = Number(height);
+    const massValue = Number(mass);
+
+    onAdd({ name, heightValue, massValue, eye_color , gender});
 
     setName('');
     setMass('');
@@ -81,4 +84,4 @@ const AddCharacter = ({ onAdd }) => {
   )
 }
 
-export default AddCharacter
+export default AddCharacter;
