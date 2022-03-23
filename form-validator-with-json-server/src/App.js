@@ -5,6 +5,7 @@ import ValidatedLoginForm from "./components/ValidatedLoginForm";
 function App() {
 
     const [users,setUsers] = useState([]);
+
     const getUsers = async () => {
         const usersFromServer = await fetchUsers();
         setUsers(usersFromServer);
@@ -18,24 +19,26 @@ function App() {
     }
 
     const loginVerification = async (data) => {
-        const users = await getUsers();
-        console.log(users);
-
         const user = {
             email:data.values.email,
             password: data.values.password
         };
-        const result = findUser(user);
+        const result = await findUser(user);
         if (result !== undefined)
-            alert(`Witaj ${result.email}`);
+            alert(`Witaj ${result.email}!`);
         else
-            alert("Nie udalo sie znalezc uzytkownika");
+            alert("Nieprawidlowe dane logowania.");
 
     };
 
-    const findUser = (user) => users.find(
+    const findUser = async (user) =>
+    {
+        const users = await getUsers();
+        return users.find(
             u => u.email === user.email && u.password === user.password
-    );
+        );
+
+    }
 
   return (
     <div className="App">

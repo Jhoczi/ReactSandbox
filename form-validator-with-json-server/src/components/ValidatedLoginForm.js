@@ -7,9 +7,6 @@ const ValidatedLoginForm = ({ onAdd }) => (
     <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {
-            console.log("Submitting");
-            console.log(values);
-
             onAdd({values});
         }}
         validationSchema = { Yup.object().shape({
